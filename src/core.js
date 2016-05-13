@@ -14,3 +14,7 @@ export function nextPlayer(state, playerId) {
     
     return state.set('currentPlayer', player);
 }
+
+export function setBid(state, bid) {
+    return state.set('currentBid', fromJS(bid));
+}
