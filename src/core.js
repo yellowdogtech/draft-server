@@ -1,6 +1,8 @@
 import { Map, fromJS } from 'immutable';
 
 
+export const INITIAL_STATE = Map();
+
 export function setEligiblePlayers(state, entries) {
     return state.set('entries', fromJS(entries));
 }

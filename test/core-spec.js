@@ -32,20 +32,20 @@ describe('application logic', () => {
         const state = Map();
 
         const teams = [
-            {'id': 1, 'name': 'Cruncheesie', 'owner': 'Derrick Brown', 'players':[] },
-            {'id': 2, 'name': 'Juice', 'owner': 'Travis Maly', 'players':[] },
-            {'id': 3, 'name': 'Chise', 'owner': 'Matt Peterson', 'players':[] },
-            {'id': 4, 'name': 'WKRP', 'owner': 'Bill Boortz', 'players':[] }
+            {'id': 1, 'name': 'Cruncheesie', 'owner': 'Derrick Brown', 'players':[], 'auctionDollars': 500 },
+            {'id': 2, 'name': 'Juice', 'owner': 'Travis Maly', 'players':[], 'auctionDollars': 500 },
+            {'id': 3, 'name': 'Chise', 'owner': 'Matt Peterson', 'players':[], 'auctionDollars': 500 },
+            {'id': 4, 'name': 'WKRP', 'owner': 'Bill Boortz', 'players':[], 'auctionDollars': 500 }
         ];
 
         const nextState = setEligibleTeams(state, teams);
 
         expect(nextState).to.equal(Map({
             teams: fromJS([
-                {'id': 1, 'name': 'Cruncheesie', 'owner': 'Derrick Brown', 'players':[], 'capSpace': 500},
-                {'id': 2, 'name': 'Juice', 'owner': 'Travis Maly', 'players':[], 'capSpace': 500},
-                {'id': 3, 'name': 'Chise', 'owner': 'Matt Peterson', 'players':[], 'capSpace': 500},
-                {'id': 4, 'name': 'WKRP', 'owner': 'Bill Boortz', 'players':[], 'capSpace': 500}
+                {'id': 1, 'name': 'Cruncheesie', 'owner': 'Derrick Brown', 'players':[], 'auctionDollars': 500},
+                {'id': 2, 'name': 'Juice', 'owner': 'Travis Maly', 'players':[], 'auctionDollars': 500},
+                {'id': 3, 'name': 'Chise', 'owner': 'Matt Peterson', 'players':[], 'auctionDollars': 500},
+                {'id': 4, 'name': 'WKRP', 'owner': 'Bill Boortz', 'players':[], 'auctionDollars': 500}
             ])
         }));
 
@@ -98,23 +98,15 @@ describe('application logic', () => {
    describe('setBid', () => {
 
        it('sets bid for current player', () => {
-            const entries = fromJS([
-                { 'id': 1, 'name':'Steph Curry', 'salary': 10000000, 'position': 'pg' },
-                { 'id': 2, 'name':'Kevin Durant', 'salary': 15000000, 'position': 'sf' }
-            ]);
 
             const currentPlayer = fromJS({ 'id': 1, 'name':'Steph Curry', 'salary': 10000000, 'position': 'pg' });
 
             const state = Map()
-                .set('entries', entries)
-                .set('currentPlayer', currentPlayer)
                 .set('currentBid', fromJS({'teamId': 0, 'amount':0}));
 
             var nextState = setBid(state, {'teamId': 1, 'amount': 9});
 
             expect(nextState).to.equal(Map({
-                entries: entries,
-                currentPlayer: currentPlayer,
                 currentBid: fromJS({'teamId': 1, 'amount': 9})
             }));
        });
