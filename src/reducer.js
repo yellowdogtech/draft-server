@@ -1,6 +1,6 @@
-import {setEligiblePlayers, setEligibleTeams, INITIAL_STATE} from './core';
+import {setEligiblePlayers, setEligibleTeams, setBid, INITIAL_STATE} from './core';
 
-export default function recuder(state = INITIAL_STATE, action) {
+export default function reducer(state = INITIAL_STATE, action) {
     switch(action.type) {
         case 'INITIALIZE_DRAFT':
             state = setEligiblePlayers(state, action.entries);
@@ -8,6 +8,9 @@ export default function recuder(state = INITIAL_STATE, action) {
 
         case 'SET_ELIGIBLE_PLAYERS':
             return setEligiblePlayers(state, action.entries);
+            
+        case 'SET_BID':
+            return setBid(state, action.bid);        
     }
 
     return state;
